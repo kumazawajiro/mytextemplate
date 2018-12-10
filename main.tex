@@ -1,0 +1,61 @@
+\documentclass[autodetect-engine,dvipdfmx-if-dvi,titlepage,twoside,ja=standard]{bxjsarticle}
+%%%%%%%%%%%%%%%%%%%
+% パッケージの管理（自分でパッケージを追加しない限りは影響しない）
+% 古いものは怒られる
+\RequirePackage[l2tabu, orthodox]{nag}
+% amsmathに対応してない式表記は怒られる
+\usepackage[all, warning]{onlyamsmath}
+%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% 数式関係
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics} % 物理で使う数式が便利に
+% 図の挿入
+\usepackage{graphicx}
+% \usepackage{enumitem} % 箇条書きのレイアウトの調整
+% \usepackage{cases} % 複数式をまとめたい時の式番号処理に使う
+% \usepackage{comment} % コメンアウトしたいものがあるときに便利
+% \usepackage{float} % 図の配置オプションHが使えるようになるぞう
+% \usepackage[pdfencoding=auto]{hyperref} % ハイパーリンク
+% \usepackage{docmute} % 分割コンパイルを便利に % これを使う時はマジックコメントで% !TEX route = hogehoge.tex で親ファイルを指定するとよい。特にatom勢
+% \usepackage{layout} % レイアウトを弄る。レイアウト変更時のみ必要。
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+%\emコマンドに対応するフォントで警告が出るので場当たり的に対処
+% （フォントのインストールが必要？）
+%\renewcommand{\em}[1]{$\mathit{#1}$}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% 式、図、表のナンバリングが「（章番号.番号）」になる
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+%%%%%%%%%%%%%%%%%%%%
+
+\title{}
+\author{}
+\date{\today}
+\begin{document}
+% \layout % レイアウトの表示
+\maketitle
+%%%%%%%%%%%%%%%%%%%%
+% 表紙の次のページを空白ページにする処理
+\mbox{}
+\thispagestyle{empty}
+\addtocounter{page}{-2}
+\newpage
+% \addtocounter{page}{-1}
+%%%%%%%%%%%%%%%%%%%%
+\tableofcontents % 目次
+\newpage % 目次出力後は改ページ
+\appendix % これ以後のsectionは付録になる。
+
+% 参考文献はbibtexを使う仕様にしておいた
+% そちらの方が将来的には便利な気がする
+\bibliographystyle{unsrt} % 参照した順に表示
+\bibliography{references.bib} % references.bibは自分のbibtexファイル名に置き換えて
+\end{document}
